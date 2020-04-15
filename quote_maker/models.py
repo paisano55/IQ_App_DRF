@@ -1,6 +1,7 @@
 from django.db import models
 
 class CPU(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=10)
     gen = models.CharField(max_length=20) #세대
     socket = models.CharField(max_length=20) #소켓
@@ -10,6 +11,7 @@ class CPU(models.Model):
     price = models.IntegerField(max_length=10)
 
 class MB(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=10)
     chipset = models.CharField(max_length=20) #칩셋
     socket = models.CharField(max_length=20) #소켓
@@ -17,6 +19,7 @@ class MB(models.Model):
     price = models.IntegerField(max_length=10)
 
 class RAM(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     gen = models.CharField(max_length=10) #DDR
     capacity = models.IntegerField(max_length=3) #GB 단위
@@ -24,6 +27,7 @@ class RAM(models.Model):
     price = models.IntegerField(max_length=10)
 
 class VGA(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     chipmaker = models.CharField(max_length=10) #엔비디아/라데온
     chipset = models.CharField(max_length=20) #1660,5700XT 등
@@ -32,6 +36,7 @@ class VGA(models.Model):
     price = models.IntegerChoices(max_length=10) 
 
 class SSD(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     nvme = models.BooleanField()
     capacity = models.IntegerField(max_length=4) #GB 단위
@@ -39,19 +44,38 @@ class SSD(models.Model):
     price = models.IntegerField(max_length=10)
 
 class HDD(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     capacity = models.IntegerField(max_length=2) #TB 단위
     rotspeed = models.IntegerField(max_length=5) #rpm 단위
     price = models.IntegerField(max_length=10)
 
 class CASE(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     size = models.CharField(max_length=10) #빅, 미들 등
     board = models.CharField(max_length=10) #최대 보드 규격
     price = models.IntegerField(max_length=10)
 
 class PSU(models.Model):
+    name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     capacity = models.IntegerField(max_length=4) # W 단위
     cert = models.CharField(max_length=10) #80+ 인증
     price = models.IntegerField(max_length=10)
+
+class Quote(models.Model):
+    name = models.CharField(max_length=100)
+    tot_price = models.IntegerField(default=0)
+    date = models.DateTimeField()
+    
+    cpu = models.ForeignKey(CPU,on_delete=False)
+    mb = models.ForeignKey(MB,on_delete=False)
+    ram = models.ForeignKey(RAM,on_delete=False)
+    vga = models.ForeignKey(VGA,on_delete=False)
+    ssd = models.ForeignKey(SSD,on_delete=False)
+    hdd = models.ForeignKey(HDD,on_delete=False)
+    case = models.ForeignKey(CASE,on_delete=False)
+    psu = models.ForeignKey(PSU,on_delete=False)
+    
+    
