@@ -10,6 +10,9 @@ class CPU(models.Model):
     clock = models.IntegerField(max_length=4) #MHz 단위로
     price = models.IntegerField(max_length=10)
 
+    def __str__(self):
+        return self.name
+
 class MB(models.Model):
     name = models.CharField(max_length=100)
     maker = models.CharField(max_length=10)
@@ -18,6 +21,9 @@ class MB(models.Model):
     form = models.CharField(max_length=10) #ATX 규격
     price = models.IntegerField(max_length=10)
 
+    def __str__(self):
+        return self.name
+
 class RAM(models.Model):
     name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
@@ -25,6 +31,9 @@ class RAM(models.Model):
     capacity = models.IntegerField(max_length=3) #GB 단위
     clock = models.IntegerField(max_length=5) #MHz 단위
     price = models.IntegerField(max_length=10)
+
+    def __str__(self):
+        return self.name
 
 class VGA(models.Model):
     name = models.CharField(max_length=100)
@@ -35,6 +44,9 @@ class VGA(models.Model):
     length = models.IntegerField(max_length=3) #mm 단위
     price = models.IntegerChoices(max_length=10) 
 
+    def __str__(self):
+        return self.name
+
 class SSD(models.Model):
     name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
@@ -43,6 +55,9 @@ class SSD(models.Model):
     memtype = models.CharField(max_length=10) #3D TLC 등
     price = models.IntegerField(max_length=10)
 
+    def __str__(self):
+        return self.name
+
 class HDD(models.Model):
     name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
@@ -50,12 +65,18 @@ class HDD(models.Model):
     rotspeed = models.IntegerField(max_length=5) #rpm 단위
     price = models.IntegerField(max_length=10)
 
+    def __str__(self):
+        return self.name
+
 class CASE(models.Model):
     name = models.CharField(max_length=100)
     maker = models.CharField(max_length=20)
     size = models.CharField(max_length=10) #빅, 미들 등
     board = models.CharField(max_length=10) #최대 보드 규격
     price = models.IntegerField(max_length=10)
+    
+    def __str__(self):
+        return self.name
 
 class PSU(models.Model):
     name = models.CharField(max_length=100)
@@ -63,6 +84,9 @@ class PSU(models.Model):
     capacity = models.IntegerField(max_length=4) # W 단위
     cert = models.CharField(max_length=10) #80+ 인증
     price = models.IntegerField(max_length=10)
+
+    def __str__(self):
+        return self.name
 
 class Quote(models.Model):
     name = models.CharField(max_length=100)
@@ -77,5 +101,8 @@ class Quote(models.Model):
     hdd = models.ForeignKey(HDD,on_delete=False)
     case = models.ForeignKey(CASE,on_delete=False)
     psu = models.ForeignKey(PSU,on_delete=False)
+
+    def __str__(self):
+        return self.name
     
     
