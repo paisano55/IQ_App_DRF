@@ -42,7 +42,7 @@ class VGA(models.Model):
     chipset = models.CharField(max_length=20) #1660,5700XT 등
     memcap = models.IntegerField(max_length=3) #GB 단위
     length = models.IntegerField(max_length=3) #mm 단위
-    price = models.IntegerChoices(max_length=10) 
+    price = models.IntegerField(max_length=10) 
 
     def __str__(self):
         return self.name
@@ -93,14 +93,14 @@ class Quote(models.Model):
     tot_price = models.IntegerField(default=0)
     date = models.DateTimeField()
     
-    cpu = models.ForeignKey(CPU,on_delete=False)
-    mb = models.ForeignKey(MB,on_delete=False)
-    ram = models.ForeignKey(RAM,on_delete=False)
-    vga = models.ForeignKey(VGA,on_delete=False)
-    ssd = models.ForeignKey(SSD,on_delete=False)
-    hdd = models.ForeignKey(HDD,on_delete=False)
-    case = models.ForeignKey(CASE,on_delete=False)
-    psu = models.ForeignKey(PSU,on_delete=False)
+    cpu = models.ForeignKey(CPU,on_delete=models.PROTECT)
+    mb = models.ForeignKey(MB,on_delete=models.PROTECT)
+    ram = models.ForeignKey(RAM,on_delete=models.PROTECT)
+    vga = models.ForeignKey(VGA,on_delete=models.PROTECT)
+    ssd = models.ForeignKey(SSD,on_delete=models.PROTECT)
+    hdd = models.ForeignKey(HDD,on_delete=models.PROTECT)
+    case = models.ForeignKey(CASE,on_delete=models.PROTECT)
+    psu = models.ForeignKey(PSU,on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
