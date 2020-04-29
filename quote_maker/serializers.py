@@ -4,7 +4,7 @@ from .models import CPU,MB,RAM,VGA,SSD,HDD,CASE,PSU,Quote
 class CpuSerializer(serializers.ModelSerializer):
     class Meta:
         model = CPU
-        fields = ('id','name','gen','socket','core','thread','clock','price')
+        fields = ('id','name','maker','gen','socket','core','thread','clock','price')
 
 class MbSerializer(serializers.ModelSerializer):
     class Meta:
