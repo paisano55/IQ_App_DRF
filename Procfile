@@ -1,0 +1,1 @@
+web: gunicorn iq_app.wsgi --log-file -
