@@ -16,12 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from quote_maker.views import CpuViewSet
 
 router = routers.DefaultRouter()
-router.register('quotemaker',CpuViewSet)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('quotemaker/',include(router.urls))
+    path('quotemaker/', include('quote_maker.urls')),
 ]

@@ -8,4 +8,5 @@ from . import views
 app_name = 'quotemaker'
 
 urlpatterns = [
+    path('cpu/',views.cpu_list)
 ]

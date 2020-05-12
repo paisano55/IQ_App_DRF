@@ -105,4 +105,7 @@ class Quote(models.Model):
     def __str__(self):
         return self.name
     
-    
+class QuoteRequest(models.Model):
+    price = models.IntegerField(default=0)
+    usage = models.CharField(max_length=20)
+
