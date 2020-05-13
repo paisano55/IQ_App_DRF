@@ -88,7 +88,7 @@ class PSU(models.Model):
     def __str__(self):
         return self.name
 
-class Quote(models.Model):
+class QUOTE(models.Model):
     name = models.CharField(max_length=100)
     tot_price = models.IntegerField(default=0)
     date = models.DateTimeField()
@@ -105,7 +105,12 @@ class Quote(models.Model):
     def __str__(self):
         return self.name
     
-class QuoteRequest(models.Model):
+class QUOTE_REQ(models.Model):
     price = models.IntegerField(default=0)
     usage = models.CharField(max_length=20)
+    ssd_cap = models.IntegerField(default=0)
+    nvme = models.BooleanField(default=False)
+    hdd_cap = models.IntegerField(default=0)
+    inter_gpu = models.BooleanField(default=False)
+
 

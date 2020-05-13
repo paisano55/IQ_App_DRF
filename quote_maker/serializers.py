@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CPU,MB,RAM,VGA,SSD,HDD,CASE,PSU,Quote
+from .models import CPU,MB,RAM,VGA,SSD,HDD,CASE,PSU,QUOTE
 
 class CpuSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +40,8 @@ class PsuSerializer(serializers.ModelSerializer):
     class Meta:
         model = PSU 
         fields = ('id','name','maker','capacity','cert','price','price')
+
+class QuoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quote
+        fields = ('name','tot_price','date','cpu','mb','ram','vga','ssd','hdd','case','psu')
