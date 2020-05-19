@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 from django.views.decorators.csrf import csrf_exempt
+from .quotemaker import QuoteMaker
 
 from .models import CPU,MB,RAM,VGA,SSD,HDD,CASE,PSU,QUOTE
 from .serializers import CpuSerializer,MbSerializer,RamSerializer,VgaSerializer,SsdSerializer,HddSerializer,CaseSerializer,PsuSerializer,QuoteSerializer
@@ -161,9 +162,14 @@ def quote_detail(request,pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
     elif request.method == 'DELETE':
-        snippet.delete()
+        quote.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
     
 
 def quote_request(request):
-    req = 
+    data = JSONParser().parse(request)
+    quote_maker = QuoteMaker()
+    quote_maker.get_request(data)
+    quote = quote_maker.make_quote()
+    return Response(quote)
+    

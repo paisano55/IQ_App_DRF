@@ -43,5 +43,5 @@ class PsuSerializer(serializers.ModelSerializer):
 
 class QuoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Quote
+        model = QUOTE
         fields = ('name','tot_price','date','cpu','mb','ram','vga','ssd','hdd','case','psu')
